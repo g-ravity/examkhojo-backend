@@ -1,0 +1,5 @@
+{
+  "jwtPrivateKey": "examkhojo_jwtPrivateKey",
+  "googleSecret": "examkhojo_googleSecret",
+  "facebookSecret": "examkhojo_facebookSecret"
+}

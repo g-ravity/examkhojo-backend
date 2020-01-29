@@ -4,6 +4,7 @@
   "description": "Backend Repository for ExamKhojo. (MEN)",
   "main": "app.js",
   "scripts": {
+    "start": "keys.bat",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,11 +23,16 @@
   },
   "homepage": "https://github.com/g-ravity/examkhojo-backend#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "config": "^3.2.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.9"
+    "mongoose": "^5.8.9",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^6.1.0",

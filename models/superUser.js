@@ -8,4 +8,4 @@ const superUserSchema = new mongoose.Schema({
 
 const SuperUser = mongoose.model("superUser", superUserSchema);
 
-export default SuperUser;
+module.exports = SuperUser;

@@ -1,9 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const config = require("config");
+const passport = require("passport");
+
+const authRoute = require("./routes/authRoute");
 
 const app = express();
 const PORT = 5000;
+
+if (
+  !config.get("jwtPrivateKey") ||
+  !config.get("googleSecret") ||
+  !config.get("facebookSecret")
+) {
+  console.error("FATAL! Auth Credentials not provided properly");
+  process.exit(1);
+}
 
 mongoose
   .connect("mongodb://localhost/examkhojo_db", {
@@ -17,7 +30,8 @@ mongoose
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(passport.initialize());
 
 app.listen(PORT, (req, res) => console.log(`Server started on PORT ${PORT}`));
 
-app.get("/", (req, res) => res.send("Welcome"));
+app.use("/api/auth", authRoute);

@@ -9,4 +9,4 @@ const examSchema = new mongoose.Schema({
 
 const Exam = mongoose.model("exam", examSchema);
 
-export default Exam;
+module.exports = Exam;
