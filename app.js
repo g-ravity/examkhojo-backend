@@ -5,6 +5,7 @@ const config = require("config");
 const passport = require("passport");
 
 const authRoute = require("./routes/authRoute");
+const adminRoute = require("./routes/adminRoute");
 
 const app = express();
 const PORT = 5000;
@@ -35,3 +36,4 @@ app.use(passport.initialize());
 app.listen(PORT, (req, res) => console.log(`Server started on PORT ${PORT}`));
 
 app.use("/api/auth", authRoute);
+app.use("/api/admin", adminRoute);
