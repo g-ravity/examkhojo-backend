@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const _ = require("lodash");
 
 const router = express.Router();
 const { SuperUser, validateUser } = require("../models/superUser");
@@ -48,6 +49,29 @@ router.post("/login", async (req, res) => {
     return res.status(400).send("Username doesn't exist");
   } catch (err) {
     return res.status(400).send("Something went wrong");
+  }
+});
+
+router.get("/managers", async (req, res) => {
+  try {
+    let managerList = await SuperUser.find({ userType: "manager" });
+    managerList = _.map(managerList, manager =>
+      _.pick(manager, ["name", "username", "userType"])
+    );
+    return res.status(200).send(managerList);
+  } catch (err) {
+    return res.status(500).send("Something went wrong!");
+  }
+});
+
+router.delete("/:username", async (req, res) => {
+  try {
+    const superUser = await SuperUser.deleteOne({
+      username: req.params.username
+    });
+    return res.status(200).send("Successfully deleted!");
+  } catch (err) {
+    return res.status(400).send("Something went wrong!");
   }
 });
 

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const config = require("config");
 const passport = require("passport");
+const cors = require("cors");
 
 const authRoute = require("./routes/authRoute");
 const adminRoute = require("./routes/adminRoute");
@@ -32,6 +33,12 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000"
+  })
+);
 
 app.listen(PORT, (req, res) => console.log(`Server started on PORT ${PORT}`));
 
