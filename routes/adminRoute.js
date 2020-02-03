@@ -20,11 +20,9 @@ router.post("/", async (req, res) => {
         userType: req.body.userType
       });
       superUser = await superUser.save();
-      return res.status(200).send({
-        name: superUser.name,
-        username: superUser.username,
-        userType: superUser.userType
-      });
+      return res
+        .status(200)
+        .send(_.pick(superUser, ["id", "name", "username", "userType"]));
     } catch (err) {
       return res.status(400).send("Something went wrong");
     }
@@ -39,11 +37,9 @@ router.post("/login", async (req, res) => {
     if (superUser) {
       const result = await bcrypt.compare(password, superUser.password);
       if (result)
-        return res.status(200).send({
-          name: superUser.name,
-          username: superUser.username,
-          userType: superUser.userType
-        });
+        return res
+          .status(200)
+          .send(_.pick(superUser, ["id", "name", "username", "userType"]));
       return res.status(400).send("Incorrect Password");
     }
     return res.status(400).send("Username doesn't exist");
@@ -56,7 +52,7 @@ router.get("/managers", async (req, res) => {
   try {
     let managerList = await SuperUser.find({ userType: "manager" });
     managerList = _.map(managerList, manager =>
-      _.pick(manager, ["name", "username", "userType"])
+      _.pick(manager, ["name", "username", "userType", "id"])
     );
     return res.status(200).send(managerList);
   } catch (err) {
@@ -64,11 +60,9 @@ router.get("/managers", async (req, res) => {
   }
 });
 
-router.delete("/:username", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    const superUser = await SuperUser.deleteOne({
-      username: req.params.username
-    });
+    await SuperUser.findByIdAndDelete(req.params.id);
     return res.status(200).send("Successfully deleted!");
   } catch (err) {
     return res.status(400).send("Something went wrong!");

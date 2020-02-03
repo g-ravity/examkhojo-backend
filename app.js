@@ -7,6 +7,9 @@ const cors = require("cors");
 
 const authRoute = require("./routes/authRoute");
 const adminRoute = require("./routes/adminRoute");
+const examRoute = require("./routes/examRoute");
+const courseRoute = require("./routes/courseRoute");
+const collegeRoute = require("./routes/examRoute");
 
 const app = express();
 const PORT = 5000;
@@ -44,3 +47,6 @@ app.listen(PORT, (req, res) => console.log(`Server started on PORT ${PORT}`));
 
 app.use("/api/auth", authRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api/exams", examRoute);
+app.use("/api/courses", courseRoute);
+app.use("/api/colleges", collegeRoute);
