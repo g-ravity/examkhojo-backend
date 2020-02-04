@@ -9,7 +9,7 @@ const authRoute = require("./routes/authRoute");
 const adminRoute = require("./routes/adminRoute");
 const examRoute = require("./routes/examRoute");
 const courseRoute = require("./routes/courseRoute");
-const collegeRoute = require("./routes/examRoute");
+const collegeRoute = require("./routes/collegeRoute");
 
 const app = express();
 const PORT = 5000;

@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
       .status(200)
       .send(_.pick(exam, ["name", "date", "id", "conductingBody", "level"]));
   } catch (err) {
-    return res.status(500).send("Something went wrong!");
+    return res.status(500).send(err);
   }
 });
 
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     );
     return res.status(200).send(_.reverse(examList));
   } catch (err) {
-    return res.status(500).send("Something went wrong!");
+    return res.status(500).send(err);
   }
 });
 
@@ -47,7 +47,7 @@ router.get("/:id", async (req, res) => {
         ])
       );
   } catch (err) {
-    return res.status(500).send("Something went wrong!");
+    return res.status(500).send(err);
   }
 });
 
@@ -56,7 +56,7 @@ router.delete("/:id", async (req, res) => {
     await Exam.findByIdAndDelete(req.params.id);
     return res.status(200).send("Successfully deleted!");
   } catch (err) {
-    return res.status(500).send("Something went wrong!");
+    return res.status(500).send(err);
   }
 });
 
@@ -69,7 +69,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .send(_.pick(exam, ["name", "date", "id", "conductingBody", "level"]));
   } catch (err) {
-    return res.status(500).send("Something went wrong!");
+    return res.status(500).send(err);
   }
 });
 
