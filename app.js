@@ -6,6 +6,7 @@ const passport = require("passport");
 const cors = require("cors");
 
 const authRoute = require("./routes/authRoute");
+const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
 const examRoute = require("./routes/examRoute");
 const courseRoute = require("./routes/courseRoute");
@@ -46,6 +47,7 @@ app.use(
 app.listen(PORT, (req, res) => console.log(`Server started on PORT ${PORT}`));
 
 app.use("/api/auth", authRoute);
+app.use("/api/user", userRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api/exams", examRoute);
 app.use("/api/courses", courseRoute);

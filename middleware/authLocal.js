@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
       try {
         user = await user.save();
         const authToken = user.generateAuthToken();
-        res.status(200).send(authToken);
+        res.status(200).send({ name: user.name, token: authToken });
       } catch (err) {
         console.log("Error while registering user!");
       }
@@ -33,7 +33,7 @@ const loginUser = async (req, res) => {
     const isValid = await bcrypt.compare(req.body.password, user.password);
     if (isValid) {
       const authToken = user.generateAuthToken();
-      res.status(200).send(authToken);
+      res.status(200).send({ name: user.name, token: authToken });
     } else res.status(400).send("Incorrect Password");
   } else res.status(400).send("User not found");
 };
@@ -41,7 +41,7 @@ const loginUser = async (req, res) => {
 const verifyUser = async (req, res, next) => {
   if (req.headers.authorization) {
     try {
-      const id = jwt.verify(
+      const { id } = jwt.verify(
         req.headers.authorization,
         config.get("jwtPrivateKey")
       );
