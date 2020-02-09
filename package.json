@@ -4,7 +4,8 @@
   "description": "Backend Repository for ExamKhojo. (MEN)",
   "main": "app.js",
   "scripts": {
-    "start": "keys.bat",
+    "start": "node app.js",
+    "dev": "keys.bat",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

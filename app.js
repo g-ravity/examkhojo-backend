@@ -38,9 +38,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch(err => console.log("Error while connecting to MongoDB"));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 app.use(
   cors({
     origin:
@@ -49,6 +46,9 @@ app.use(
         : "http://localhost:3000"
   })
 );
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.listen(PORT, (req, res) => console.log(`Server started on PORT ${PORT}`));
 
