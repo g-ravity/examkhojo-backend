@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { verifyUser } = require("../middleware/authLocal");
+const verifyUser = require("../middleware/verifyUser");
 
 const router = express.Router();
 

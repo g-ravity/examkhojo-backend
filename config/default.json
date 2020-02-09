@@ -1,7 +1,3 @@
 {
-  "jwtPrivateKey": "",
-  "googleClientID": "146462568812-4957a4j8p460p093v6kpa7jsp4j4b4ip.apps.googleusercontent.com",
-  "googleSecret": "",
-  "facebookClientID": "890948717969943",
-  "facebookSecret": ""
+  "jwtPrivateKey": ""
 }
