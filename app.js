@@ -12,15 +12,24 @@ const courseRoute = require("./routes/courseRoute");
 const collegeRoute = require("./routes/collegeRoute");
 
 const app = express();
-const PORT = 5000;
+app.set("trust proxy", true);
+
+const PORT = process.env.PORT || 5000;
 
 if (!config.get("jwtPrivateKey")) {
   console.error("FATAL! JWT Private Key not provided");
   process.exit(1);
 }
 
+const dbConnectionString =
+  process.env.NODE_ENV === "production"
+    ? `mongodb+srv://${config.get("dbUsername")}:${config.get(
+        "dbPassword"
+      )}@ravikcluster-aiykj.mongodb.net/test?retryWrites=true&w=majority`
+    : "mongodb://localhost/examkhojo_db";
+
 mongoose
-  .connect("mongodb://localhost/examkhojo_db", {
+  .connect(dbConnectionString, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -34,7 +43,10 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "http://localhost:3000"
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "examkhojo.netlify.com"
+        : "http://localhost:3000"
   })
 );
 

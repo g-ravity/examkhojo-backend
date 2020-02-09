@@ -1,5 +1,5 @@
 {
   "jwtPrivateKey": "examkhojo_jwtPrivateKey",
-  "googleSecret": "examkhojo_googleSecret",
-  "facebookSecret": "examkhojo_facebookSecret"
+  "dbUsername": "examkhojo_dbUsername",
+  "dbPassword": "examkhojo_dbPassword"
 }
