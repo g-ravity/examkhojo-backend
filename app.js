@@ -45,7 +45,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === "production"
-        ? "examkhojo.netlify.com"
+        ? "https://examkhojo.netlify.com"
         : "http://localhost:3000"
   })
 );
