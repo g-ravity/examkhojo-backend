@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, default: null },
   googleId: { type: String, default: null },
   facebookId: { type: String, default: null },
-  registrationSlug: { type: String, default: null },
+  registrationSlug: { type: String, required: true },
   phone: String,
   college: String,
   exam: String,
@@ -37,7 +37,10 @@ const validateUser = user => {
     password: Joi.string()
       .min(8)
       .required()
-      .label("Password must be 8 characters long")
+      .label("Password must be 8 characters long"),
+    registrationSlug: Joi.string()
+      .required()
+      .label("Registration Slug is required")
   });
 
   return schema.validate(user);

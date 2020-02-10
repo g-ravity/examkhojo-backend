@@ -15,7 +15,8 @@ router.post("/register", async (req, res) => {
       user = new User({
         name: req.body.name,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        registrationSlug: req.body.registrationSlug
       });
       try {
         user = await user.save();
@@ -31,6 +32,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (user) {
+    if (!user.password)
+      return res.status(400).send("Please login with Google/Facebook");
     const isValid = await bcrypt.compare(req.body.password, user.password);
     if (isValid) {
       const authToken = user.generateAuthToken();
