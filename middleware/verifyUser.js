@@ -12,11 +12,12 @@ const verifyUser = async (req, res, next) => {
       );
       const user = await User.findById(id);
       req.user = user;
+      return next();
     } catch (err) {
       return res.status(400).send("Invalid Token");
     }
   }
-  next();
+  return res.status(401).send("Not authorized!");
 };
 
 module.exports = verifyUser;

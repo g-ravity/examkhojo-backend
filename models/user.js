@@ -12,8 +12,18 @@ const userSchema = new mongoose.Schema({
   registrationSlug: { type: String, required: true },
   phone: String,
   college: String,
+  course: String,
   exam: String,
-  profilePicture: { type: String, default: null }
+  profilePicture: { type: String, default: null },
+  bookmarks: {
+    type: [
+      {
+        bookmarkId: mongoose.Schema.Types.ObjectId,
+        bookmarkType: String
+      }
+    ],
+    default: []
+  }
 });
 
 userSchema.methods.generateAuthToken = function() {
